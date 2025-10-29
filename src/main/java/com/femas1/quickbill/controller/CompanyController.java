@@ -22,9 +22,9 @@ public class CompanyController{
         return companyService.createCompany(company);
     }
 
+    @GetMapping("/{id}")
+    public Company getCompany(@PathVariable Integer id){return companyService.getCompany(id); }
      /**
-     * Handles: PUT /api/companies/{id}
-     *
      * @PathVariable reads the {id} from the URL.
      * @RequestBody reads the JSON update data from the request body.
      */
