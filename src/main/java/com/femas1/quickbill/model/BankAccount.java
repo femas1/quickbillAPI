@@ -1,13 +1,22 @@
 package com.femas1.quickbill.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "bank_accounts")
 public class BankAccount {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bankAccountId;
     private String accountHolder;
     private String bankName;
     private String iban;
     private String bic;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
     private Company company;
 
+    public BankAccount(){}
     public BankAccount(int bankAccountId, String accountHolder, String bankName, String iban, String bic,
                        Company company) {
         this.bankAccountId = bankAccountId;
