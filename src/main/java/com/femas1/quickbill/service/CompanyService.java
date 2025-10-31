@@ -31,7 +31,7 @@ public class CompanyService {
         return existingCompany;
     }
 
-    public Company updateCompany(Integer id, Company companyDetails){
+    public Company updateCompany(int id, Company companyDetails){
         Company existingCompany = companyRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Company not found."));
         Address existingAddress = existingCompany.getAddress();
