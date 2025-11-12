@@ -32,4 +32,24 @@ public class ProductService {
         return productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
     }
+
+    public Product updateProduct(Product product, int id){
+        Product existingProduct = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found!"));
+        int taxRateId = product.getTaxRate().getRateId();
+        TaxRate existingTaxRate = taxRateRepository.findById(taxRateId)
+                .orElseThrow(() -> new RuntimeException(
+                        "TaxRate not found with id: " + taxRateId));
+        existingProduct.setName(product.getName());
+        existingProduct.setDescription(product.getDescription());
+        existingProduct.setUnitPrice(product.getUnitPrice());
+        existingProduct.setTaxRate(existingTaxRate);
+        return productRepository.save(existingProduct);
+    }
+
+    public void deleteProduct(int id){
+        productRepository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Product not fouund!"));
+        productRepository.deleteById(id);
+    }
 }
