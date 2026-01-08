@@ -3,6 +3,7 @@ package com.femas1.quickbill.controller;
 import com.femas1.quickbill.model.BankAccount;
 import com.femas1.quickbill.model.Company;
 import com.femas1.quickbill.service.BankAccountService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class BankAccountController {
     }
 
     @PostMapping ("/company/{companyId}")
-    public BankAccount createBankAccount(@RequestBody BankAccount bankAccount, @PathVariable Integer companyId){
+    public BankAccount createBankAccount(@Valid @RequestBody BankAccount bankAccount, @PathVariable Integer companyId){
         return bankAccountService.createBankAccount(bankAccount, companyId);
     }
     @GetMapping("/{id}")
@@ -26,7 +27,7 @@ public class BankAccountController {
     }
 
     @PutMapping("/{id}")
-    public BankAccount updateBankAccount(@RequestBody BankAccount bankAccount, @PathVariable Integer id){
+    public BankAccount updateBankAccount(@Valid @RequestBody BankAccount bankAccount, @PathVariable Integer id){
         return bankAccountService.updateBankAccount(bankAccount, id);
     }
 

@@ -2,6 +2,7 @@ package com.femas1.quickbill.controller;
 
 import com.femas1.quickbill.model.Product;
 import com.femas1.quickbill.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,7 +14,7 @@ public class ProductController {
         this.productService = productService;
     }
     @PostMapping
-    public Product createProduct(@RequestBody Product product){
+    public Product createProduct(@Valid @RequestBody Product product){
         return productService.createProduct(product);
     }
 
@@ -23,7 +24,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@RequestBody Product product, @PathVariable int id){ return productService.updateProduct(product, id);}
+    public Product updateProduct(@Valid @RequestBody Product product, @PathVariable int id){ return productService.updateProduct(product, id);}
 
     @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable int id){productService.deleteProduct(id); return "Product successfully deleted!";}

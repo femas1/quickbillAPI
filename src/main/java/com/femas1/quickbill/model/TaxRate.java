@@ -1,6 +1,8 @@
 package com.femas1.quickbill.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name="tax_rates")
@@ -9,6 +11,8 @@ public class TaxRate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tax_rate_id")
     private int rateId;
+    @Min(0)
+    @Max(100)
     private int rate;
 
     public TaxRate(){}

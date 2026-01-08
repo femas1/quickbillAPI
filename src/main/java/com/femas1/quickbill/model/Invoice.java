@@ -2,7 +2,7 @@ package com.femas1.quickbill.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
+import jakarta.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,8 +13,12 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int invoiceId;
+    @NotBlank(message = "Insert a valid invoice number (min 3 characters).")
+    @Size(min = 3, max = 255)
     private String invoiceNr;
+    @PastOrPresent(message = "Invoice date cannot be in the future.")
     private Date date;
+    @Future(message = "Due date must be in the future.")
     private Date dueDate;
     @ManyToOne
     @JoinColumn(name = "status_id")

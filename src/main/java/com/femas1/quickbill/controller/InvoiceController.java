@@ -2,6 +2,7 @@ package com.femas1.quickbill.controller;
 
 import com.femas1.quickbill.model.Invoice;
 import com.femas1.quickbill.service.InvoiceService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class InvoiceController {
     }
 
     @PostMapping
-    public Invoice createInvoice(@RequestBody Invoice invoice) {
+    public Invoice createInvoice(@Valid @RequestBody Invoice invoice) {
         return invoiceService.createInvoice(invoice);
     }
 

@@ -3,6 +3,7 @@ package com.femas1.quickbill.controller;
 import com.femas1.quickbill.model.TaxRate;
 import com.femas1.quickbill.repository.TaxRateRepository;
 import com.femas1.quickbill.service.TaxRateService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +16,7 @@ public class TaxRateController {
     }
 
     @PostMapping
-    public TaxRate createTaxRate(@RequestBody TaxRate rate){
+    public TaxRate createTaxRate(@Valid @RequestBody TaxRate rate){
         return taxRateService.createTaxRate(rate);
     }
 
@@ -25,7 +26,7 @@ public class TaxRateController {
     }
 
     @PutMapping("/{id}")
-    public TaxRate updateTaxRate(@PathVariable int id, @RequestBody TaxRate rate){
+    public TaxRate updateTaxRate(@PathVariable int id, @Valid @RequestBody TaxRate rate){
         return taxRateService.updateTaxRate(id, rate);
     }
 

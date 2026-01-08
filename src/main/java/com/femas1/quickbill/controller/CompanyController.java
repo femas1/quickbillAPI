@@ -2,6 +2,7 @@ package com.femas1.quickbill.controller;
 
 import com.femas1.quickbill.model.Company;
 import com.femas1.quickbill.service.CompanyService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class CompanyController{
     }
 
     @PostMapping
-    public Company createCompany(@RequestBody Company company){
+    public Company createCompany(@Valid @RequestBody Company company){
         return companyService.createCompany(company);
     }
 

@@ -1,6 +1,7 @@
 package com.femas1.quickbill.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "bank_accounts")
@@ -8,9 +9,17 @@ public class BankAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bankAccountId;
+    @NotBlank(message = "Insert a valid name")
+    @Size(min = 3, max = 255)
     private String accountHolder;
+    @NotBlank(message = "Insert a valid name")
+    @Size(min = 3, max = 255)
     private String bankName;
+    @NotBlank(message = "Insert a valid IBAN number")
+    @Size(min= 22, max = 34)
     private String iban;
+    @NotBlank(message = "Insert a valid IBAN number")
+    @Size(min= 8, max = 11)
     private String bic;
     @ManyToOne
     @JoinColumn(name = "company_id")

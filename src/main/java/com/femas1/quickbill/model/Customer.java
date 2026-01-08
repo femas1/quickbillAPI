@@ -1,6 +1,9 @@
 package com.femas1.quickbill.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "customers")
@@ -8,8 +11,13 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerId;
+    @NotBlank(message = "Insert a valid name")
+    @Size(min = 3, max = 255)
     private String firstName;
+    @NotBlank(message = "Insert a valid name")
+    @Size(min = 3, max = 255)
     private String lastName;
+    @Email
     private String email;
     @ManyToOne
     @JoinColumn(name = "address_id")

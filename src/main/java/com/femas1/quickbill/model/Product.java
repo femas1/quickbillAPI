@@ -1,7 +1,7 @@
 package com.femas1.quickbill.model;
 
 import jakarta.persistence.*;
-
+import jakarta.validation.constraints.*;
 @Entity
 @Table(name = "products")
 public class Product {
@@ -9,11 +9,15 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
+    @NotBlank(message= "Insert a valid product name")
+    @Size(min=2, max=255)
     private String name;
     private String description;
+    @PositiveOrZero(message= "Price cannot be negative")
     private double unitPrice;
     @JoinColumn(name = "tax_rate_id")
     @ManyToOne
+    @NotNull
     private TaxRate taxRate;
 
     public Product(){}

@@ -2,6 +2,7 @@ package com.femas1.quickbill.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "invoice_items")
@@ -9,8 +10,11 @@ public class InvoiceItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int invoiceItemId;
+    @Min(1)
     private int quantity;
+    @Pattern(regexp = "^(pcs|l|ml)$", message = "Unit can be 'pcs', 'l', 'ml'")
     private String unit;
+    @PositiveOrZero(message = "Price cannot be negative")
     private double unitPrice;
     @ManyToOne
     @JoinColumn(name = "invoice_id")
