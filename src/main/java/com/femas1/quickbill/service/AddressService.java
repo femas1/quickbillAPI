@@ -34,6 +34,10 @@ public class AddressService {
                 .orElseThrow(() -> new RuntimeException("Address not found."));
     }
 
+    public List<Address> getAllAddresses(){
+        return addressRepository.findAll();
+    }
+
     public Address updateAddress(int id, Address address){
         Address existingAddress = addressRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Address not found."));

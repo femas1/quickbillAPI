@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/addresses")
 @CrossOrigin(origins = "http://localhost:5173")
@@ -18,6 +20,9 @@ public class AddressController {
     }
     @PostMapping
     public Address createAddress(@Valid @RequestBody Address address){return addressService.createAddress(address);}
+
+    @GetMapping
+    public List<Address> getAllAddresses(){return addressService.getAllAddresses();}
 
     @GetMapping("/{id}")
     public Address getAddress(@PathVariable Integer id){return addressService.getAddress(id);}
